@@ -7,7 +7,7 @@ Simply copy and paste the code below into a new module named 'xlGitinit' in your
   Public VBComp As VBIDE.VBComponent
   Public CodeMod As CodeModule
   
-  Sub get_hello_world()
+  Sub xlGitinit()
     
     Set VBProj = ActiveWorkbook.VBProject
     Set VBComp = VBProj.VBComponents.Add(vbext_ct_StdModule)
