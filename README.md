@@ -1,13 +1,13 @@
-# xlGitinit
+# xlWeeties
 
-Simply copy and paste the code below into a new module named 'xlGitinit' in your 'personal.xlsb' file.
+Simply copy and paste the code below into a new module named 'xlWeeties' in your 'personal.xlsb' file.
 
 ```vbnet
   Public VBProj As VBIDE.VBProject
   Public VBComp As VBIDE.VBComponent
   Public CodeMod As CodeModule
   
-  Sub xlGitinit()
+  Sub xlWeeties()
     
     Set VBProj = ActiveWorkbook.VBProject
     Set VBComp = VBProj.VBComponents.Add(vbext_ct_StdModule)
@@ -21,7 +21,7 @@ Simply copy and paste the code below into a new module named 'xlGitinit' in your
       
     Set objHTTP = CreateObject("WinHttp.WinHttpRequest.5.1")
     
-    URL = "https://raw.githubusercontent.com/jaykilleen/xlGetVBA/master/hello_world.bas"
+    URL = "https://raw.githubusercontent.com/jaykilleen/xlWeeties/master/hello_world.bas"
     NewModuleName = ExtractModuleNameFromURL(URL)
     objHTTP.Open "GET", URL, False
     objHTTP.setRequestHeader "User-Agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0)"
