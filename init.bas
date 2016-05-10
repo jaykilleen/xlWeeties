@@ -3,7 +3,7 @@ Public VBComp As VBIDE.VBComponent
 Public CodeMod As CodeModule
 Public wbProject As Workbook
   
-Sub xlGitinit()
+Sub xlWeeties()
   
   Set vbProj = ActiveWorkbook.VBProject
   Set VBComp = vbProj.VBComponents.Add(vbext_ct_StdModule)
@@ -15,7 +15,7 @@ Sub xlGitinit()
       
   Set objHTTP = CreateObject("WinHttp.WinHttpRequest.5.1")
     
-  URL = "https://raw.githubusercontent.com/jaykilleen/xlGitinit/master/hello_world.bas"
+  URL = "https://raw.githubusercontent.com/jaykilleen/xlWeeties/master/hello_world.bas"
   objHTTP.Open "GET", URL, False
   objHTTP.SetRequestHeader "User-Agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0)"
   objHTTP.SetRequestHeader "Content-type", "application/x-www-form-urlencoded"
