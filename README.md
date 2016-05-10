@@ -1,69 +1,17 @@
 # xlWeeties
 
-Simply copy and paste the code below into a new module named 'xlWeeties' in your 'personal.xlsb' file.
+Simply copy and paste the code from [init.bas](https://github.com/jaykilleen/xlWeeties/blob/master/init.bas) into a new module named 'xlWeeties'.
 
-```vbnet
-  Public VBProj As VBIDE.VBProject
-  Public VBComp As VBIDE.VBComponent
-  Public CodeMod As CodeModule
-  
-  Sub xlWeeties()
-    
-    Set VBProj = ActiveWorkbook.VBProject
-    Set VBComp = VBProj.VBComponents.Add(vbext_ct_StdModule)
-    Set CodeMod = VBComp.CodeModule
-    
-    Dim strResult As String
-    Dim objHTTP As Object
-    Dim URL As String
-    
-    Dim NewModuleName As String
-      
-    Set objHTTP = CreateObject("WinHttp.WinHttpRequest.5.1")
-    
-    URL = "https://raw.githubusercontent.com/jaykilleen/xlWeeties/master/hello_world.bas"
-    NewModuleName = ExtractModuleNameFromURL(URL)
-    objHTTP.Open "GET", URL, False
-    objHTTP.setRequestHeader "User-Agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0)"
-    objHTTP.setRequestHeader "Content-type", "application/x-www-form-urlencoded"
-    objHTTP.send ("keyword=php")
-    strResult = objHTTP.responseText
-    Debug.Print strResult
-    
-    For Each VBComp In VBProj.VBComponents
-      If VBComp.Type = vbext_ct_Document Then
-  
-          With CodeMod
-            .DeleteLines 1, .CountOfLines
-          End With
-          Else
-            VBProj.VBComponents.Remove VBComp
-          End If
-      Next VBComp
-      
-    Call AddModuleToProject(NewModuleName, strResult)
-    
-  End Sub
-  Sub AddModuleToProject(NewModuleName, Code As String)
-    
-    Set VBComp = VBProj.VBComponents.Add(vbext_ct_StdModule)
-    VBComp.Name = NewModuleName
-    
-    Set CodeMod = VBComp.CodeModule
-    
-    With CodeMod
-      .InsertLines .CountOfLines + 1, Code
-    End With
-  End Sub
-  
-  Function ExtractModuleNameFromURL(s As String)
-  
-    Dim iLastBackslash As Integer
-  
-    iLastBackslash = InStrRev(s, "/")
-    
-    s = Replace(Right(s, (Len(s) - iLastBackslash)), ".bas", "")
-    
-  End Function
-```
+Also copy the [add_reference.bas](https://github.com/jaykilleen/xlWeeties/blob/master/add_references.bas) to a new module called `add_references`.
 
+For it to all work you will need to add the `Microsoft Visual Basic For Applications Extensibility 5.3` library to your VBA Editor (as `add references` cannot do this for you because it depends on this library).
+
+You can do this as per [cpearson](http://www.cpearson.com/excel/vbe.aspx) instructions:
+
+>First, you need to set an reference to the VBA Extensibility library. The library contains the definitions of the objects that make up >the VBProject. In the VBA editor, go the the Tools menu and choose References. In that dialog, scroll down to and check the entry for >Microsoft Visual Basic For Applications Extensibility 5.3. If you do not set this reference, you will receive a User-defined type not >defined compiler error.
+
+You can then run the `add_references` module.
+
+You can then run the `xlWeeties` module.
+
+:)
